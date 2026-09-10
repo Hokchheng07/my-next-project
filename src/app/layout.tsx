@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Geist, Geist_Mono, Kantumruy_Pro } from "next/font/google";
 import "./globals.css";
 import { Suspense } from "react";
+import { Toaster } from "@/components/ui/sonner";
 
 const kantumruy = Kantumruy_Pro({
   variable: "--font-kantumruy-pro--",
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <Suspense fallback={<h1 className="bg-red-500 text-8xl">Loading....</h1>}>{children}</Suspense>
+        <Toaster />
       </body>
     </html>
   );
