@@ -1,12 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { createColumnHelper } from "@tanstack/react-table";
 
 import {type DataTableFeatures} from "./data-table-features";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-type ratingType = {
+type rating = {
     rate:number
     count : number
 }
@@ -18,9 +19,7 @@ export type ProductType = {
   title : string;
   price: number;
   category : string;
-  rate : ratingType;
-  status: "pending" | "processing" | "success" | "failed";
-  email: string;
+  rating: rating;      
 };
 
 // Use `accessor` for data columns and `display` for columns without one.
@@ -32,6 +31,14 @@ export const columns = columnHelper.columns([
   }),
   columnHelper.accessor("image", {
     header: "image",
+    //custom cell format
+    cell : ({row}) => (
+      <Image
+      width={30}
+      height={30}
+      src={row.getValue<string>("image")}
+      alt="feature"/>
+    )
   }),
   columnHelper.accessor("title", {
     header: "Title",
@@ -42,7 +49,7 @@ export const columns = columnHelper.columns([
   columnHelper.accessor("category", {
     header: "Category",
   }),
-  columnHelper.accessor("rate.rate", {
+  columnHelper.accessor("rating.rate", {
     header: "Rating",
   }),
 ]);

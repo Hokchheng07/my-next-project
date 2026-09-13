@@ -12,7 +12,7 @@ const fetcher = async (url: string): Promise<ProductType[]> => {
 
 export default function ProductDataTable() {
   const { data } = useSWR<ProductType[]>(
-    "https://api.escuelajs.co/api/v1/categories",
+    `${process.env.NEXT_PUBLIC_FAKESTORE_API}/products`,
     fetcher,
   );
   return (
