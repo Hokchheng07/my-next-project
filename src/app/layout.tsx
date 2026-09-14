@@ -4,11 +4,9 @@ import "./globals.css";
 import { Suspense } from "react";
 import { Toaster } from "@/components/ui/sonner";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
-  ? process.env.NEXT_PUBLIC_SITE_URL
-  : process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "http://localhost:3000";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://my-next-project-ten-tau.vercel.app";
 
 const kantumruy = Kantumruy_Pro({
   variable: "--font-kantumruy-pro--",
