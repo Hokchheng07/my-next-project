@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 const ogImage =
-  "/assets/image/M2-Streets Streetwear Graphic with Silhouette.png";
+  "/assets/image/m2-streets-streetwear-graphic.png";
 
 export function createPageMetadata(
   title: string,

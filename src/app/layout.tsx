@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/assets/image/M2-Streets Streetwear Graphic with Silhouette.png",
+        url: "/assets/image/m2-streets-streetwear-graphic.png",
         width: 940,
         height: 788,
         alt: "M2 Streets streetwear graphic",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "M2 - Next Project",
     description: "M2 Specialized Next Project",
-    images: ["/assets/image/M2-Streets Streetwear Graphic with Silhouette.png"],
+    images: ["/assets/image/m2-streets-streetwear-graphic.png"],
   },
 };
 

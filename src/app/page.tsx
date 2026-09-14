@@ -12,7 +12,7 @@ export default function Home() {
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
         <Image
           className="h-auto w-full max-w-md"
-          src="/assets/image/M2-Streets Streetwear Graphic with Silhouette.png"
+          src="/assets/image/m2-streets-streetwear-graphic.png"
           alt="M2 Streets streetwear graphic"
           width={940}
           height={788}
