@@ -16,7 +16,14 @@ export async function generateMetadata(
   const productId = Array.isArray(slug) ? slug.at(-1) : slug;
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_FAKESTORE_API}/products/${productId}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_FAKESTORE_API}/products/${productId}`, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        Accept: "application/json",
+      },
+      next: { revalidate: 3600 },
+    });
     if (!res.ok) throw new Error(`API error: ${res.status}`);
     const product = await res.json();
 
