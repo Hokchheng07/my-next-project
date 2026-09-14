@@ -1,22 +1,35 @@
 import React from "react";
 import { ProductDetail } from "@/components/product/ProductDetailComponent";
 import { createPageMetadata } from "@/lib/seo";
+import type { Metadata, ResolvingMetadata } from "next";
 
-export async function generateMetadata({
-  params,
-}: {
+type Props = {
   params: Promise<{ slug: string[] }>;
-}) {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const { slug } = await params;
-  const productName = slug.at(-1)?.replace(/[-_]+/g, " ") ?? "Product";
-  const formattedName = productName.replace(/\b\w/g, (character) =>
-    character.toUpperCase(),
+  const productId = Array.isArray(slug) ? slug.at(-1) : slug;
+
+  const product = await fetch(`${process.env.NEXT_PUBLIC_FAKESTORE_API}/products/${productId}`).then(
+    (res) => res.json(),
   );
 
-  return createPageMetadata(
-    `M2 - ${formattedName}`,
-    `View details and availability for ${formattedName} from M2.`,
-  );
+  return {
+    title: product.title,
+    description: product.description,
+    openGraph: {
+      images: [
+        {
+          url: product.image,
+        },
+      ],
+    },
+  };
 }
 
 export default async function ProductDetailPage({
