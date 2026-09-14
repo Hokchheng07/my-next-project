@@ -15,21 +15,28 @@ export async function generateMetadata(
   const { slug } = await params;
   const productId = Array.isArray(slug) ? slug.at(-1) : slug;
 
-  const product = await fetch(`${process.env.NEXT_PUBLIC_FAKESTORE_API}/products/${productId}`).then(
-    (res) => res.json(),
-  );
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_FAKESTORE_API}/products/${productId}`);
+    if (!res.ok) throw new Error(`API error: ${res.status}`);
+    const product = await res.json();
 
-  return {
-    title: product.title,
-    description: product.description,
-    openGraph: {
-      images: [
-        {
-          url: product.image,
-        },
-      ],
-    },
-  };
+    return {
+      title: product.title,
+      description: product.description,
+      openGraph: {
+        images: [
+          {
+            url: product.image,
+          },
+        ],
+      },
+    };
+  } catch (e) {
+    console.error("Metadata fetch failed:", e);
+    return {
+      title: "Product Not Found",
+    };
+  }
 }
 
 export default async function ProductDetailPage({
