@@ -1,19 +1,29 @@
 "use client";
 
 import React from "react";
-import { useState, useEffect } from "react";
-import { da } from "zod/locales";
 import ProductCard from "./ProductCardComponent";
 import Link from "next/link";
 import useSWR from "swr";
 import Loading from "@/app/loading";
+
+type Product = {
+  id: number;
+  image: string;
+  title: string;
+  description: string;
+  price: number;
+};
+
 export default function ProductCardListComponent() {
   const fetcher = (url: string) => fetch(url).then((r) => r.json());
   const {
     data: product,
     error,
     isLoading,
-  } = useSWR(`${process.env.NEXT_PUBLIC_FAKESTORE_API}/products`, fetcher);
+  } = useSWR<Product[]>(
+    `${process.env.NEXT_PUBLIC_FAKESTORE_API}/products`,
+    fetcher,
+  );
 
   if (error) return <div>Loading...</div>;
   if (isLoading) {
