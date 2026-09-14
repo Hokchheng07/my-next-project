@@ -1,16 +1,15 @@
-import React from 'react'
-import { Button } from '@/components/ui/button';
-import { Card, CardHeader } from '@/components/ui/card';
-import { CardDemo } from '@/components/Cards/CardDemoComponent';
-import { Metadata } from "next";
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader } from "@/components/ui/card";
+import { CardDemo } from "@/components/Cards/CardDemoComponent";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "M2 - About Us",
-  description: "About the team behind M2",
-};
+export const metadata = createPageMetadata(
+  "M2 - About Us",
+  "Learn more about the team and project behind M2.",
+);
 
 export default function about() {
-
   return (
     <div>
       <p>សួរស្តី</p>
@@ -19,7 +18,7 @@ export default function about() {
       <Card>
         <CardHeader>Hello this is header inside card</CardHeader>
       </Card>
-      <CardDemo/>
+      <CardDemo />
     </div>
   );
 }
