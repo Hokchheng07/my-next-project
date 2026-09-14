@@ -16,7 +16,7 @@ export async function generateMetadata(
   const productId = Array.isArray(slug) ? slug.at(-1) : slug;
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_FAKESTORE_API}/products/${productId}`);
+    const res = await fetch(`${process.env.FAKESTORE_API}/products/${productId}`);
     if (!res.ok) throw new Error(`API error: ${res.status}`);
     const product = await res.json();
 
